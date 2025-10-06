@@ -15,6 +15,27 @@
      line-height: 1.6;
  }
 
+ /*Добавляем звёзды*/
+
+ 
+ .star {
+     position: absolute;
+     background: white;
+     border-radius: 50%;
+     opacity: 0.8;
+     animation: twinkle 2s infinite alternate;
+ }
+
+ @keyframes twinkle {
+     from {
+         opacity: 0.5;
+     }
+
+     to {
+         opacity: 0.8;
+     }
+ }
+
  /* Floating Navbar */
  .navbar {
      position: fixed;
@@ -340,3 +361,4 @@
          scroll-behavior: smooth;
      }
  }
+
