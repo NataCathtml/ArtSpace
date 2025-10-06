@@ -45,3 +45,37 @@
                 navLinksContainer.classList.remove('active');
             }
         });
+
+        const numStars = 200; // Кол-во звёзд
+
+      for (let i = 0; i < numStars; i++) {
+        const star = document.createElement("div");
+          star.classList.add("star");
+
+        // Случайный размер
+        const size = Math.random() * 3 + 1;
+        star.style.width = size + "px";
+          star.style.height = size + "px";
+          
+
+        // Случайная позиция
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.left = Math.random() * window.innerWidth + "px";
+
+        // Разная скорость мерцания
+        star.style.animationDuration = Math.random() * 3 + 1 + "s";
+
+        document.body.appendChild(star);
+      }
+
+      // Опционально: лёгкое движение звёзд (эффект "плывущего неба")
+      function moveStars() {
+        document.querySelectorAll(".star").forEach((star) => {
+          let top = parseFloat(star.style.top);
+          top += 0.05; // скорость
+          if (top > window.innerHeight) top = 0;
+          star.style.top = top + "px";
+        });
+        requestAnimationFrame(moveStars);
+      }
+      moveStars();
