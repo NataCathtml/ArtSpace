@@ -79,3 +79,85 @@
         requestAnimationFrame(moveStars);
       }
       moveStars();
+      
+
+//  Карусель карусель бей в жилудок не жалей:)
+      
+document.addEventListener('DOMContentLoaded', () => {
+
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('nextBtn');
+    const prevButton = document.getElementById('prevBtn');
+    const slideHeight = slides[0].getBoundingClientRect().height;
+
+    // --- 1. Клонирование слайдов для зацикливания ---
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    firstClone.id = 'first-clone';
+    lastClone.id = 'last-clone';
+
+    track.append(firstClone);
+    track.prepend(lastClone);
+
+    const allSlides = Array.from(track.children);
+    let currentIndex = 1; // Начинаем с первого "настоящего" слайда
+
+    // --- 2. Начальная позиция ---
+    track.style.transform = `translateY(-${slideHeight * currentIndex}px)`;
+
+    // --- 3. Функции для прокрутки ---
+    const moveToSlide = (index) => {
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateY(-${slideHeight * index}px)`;
+    };
+
+    // --- 4. Обработчики кнопок ---
+    nextButton.addEventListener('click', () => {
+        currentIndex++;
+        moveToSlide(currentIndex);
+
+        // Если дошли до клона в конце, перескакиваем на первый реальный слайд
+        if (currentIndex === allSlides.length - 1) {
+            setTimeout(() => {
+                track.style.transition = 'none'; // Отключаем анимацию для резкого перехода
+                currentIndex = 1;
+                track.style.transform = `translateY(-${slideHeight * currentIndex}px)`;
+            }, 500); // 500ms - столько же, сколько длится анимация
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        currentIndex--;
+        moveToSlide(currentIndex);
+
+        // Если дошли до клона в начале, перескакиваем на последний реальный слайд
+        if (currentIndex === 0) {
+            setTimeout(() => {
+                track.style.transition = 'none';
+                currentIndex = allSlides.length - 2;
+                track.style.transform = `translateY(-${slideHeight * currentIndex}px)`;
+            }, 500);
+        }
+    });
+});
+
+// делаем так чтобы навигация пропадала когда листаешь вниз
+
+  let lastScrollTop = 0;
+  const nav = document.querySelector('.navbar'); // замени .navbar на свой класс!
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      // Скроллим вниз — скрыть
+      nav.classList.add('hidden-nav');
+    } else {
+      // Скроллим вверх — показать
+      nav.classList.remove('hidden-nav');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // защита от отрицательных значений
+  });
