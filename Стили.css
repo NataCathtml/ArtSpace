@@ -6,6 +6,7 @@
 
  html {
      scroll-behavior: smooth;
+
  }
 
  body {
@@ -15,19 +16,29 @@
      line-height: 1.6;
  }
 
-.project-info {
-    font-family: -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        sans-serif;
-    color: #efe6f3;
-    font-size: 30px;
-   
-}
+ #H2-pr {
+     position: relative;
+     margin-top: 80px;
+     color: #efe6f3;
+     font-size: 40px;
+ }
+
+ .project-info {
+
+     color: #efe6f3;
+     font-size: 30px;
+     position: relative;
+     margin-top: 80px;
+     margin-left: 10px;
+ }
+
+ .Things {
+     color: #efe6f3;
+     font-size: 30px;
+     position: left;
+     margin-top: 20px;
+     margin-left: 0px;
+ }
 
  /*Добавляем звёзды*/
 
@@ -63,21 +74,19 @@
      border: 1px solid #333;
      z-index: 1000;
      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    
+
  }
 
- #main-header.hidden {
-     top: -100px;
-     /* Прячем хедер, сдвигая его вверх за пределы экрана */
- }
+
+
 
  .nav-container {
      display: flex;
      align-items: center;
      justify-content: space-between;
      gap: 40px;
-    transition: top 0.4s ease-in-out;
-        /* Плавная анимация */
+     transition: top 0.4s ease-in-out;
+     /* Плавная анимация */
  }
 
  .nav-center {
@@ -174,7 +183,7 @@
  /* Individual Section Colors */
  #home {
      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    min-height: 120vh;
+     min-height: 100vh;
  }
 
  #about {
@@ -182,13 +191,19 @@
  }
 
  #services {
-    background: linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 100%);
-    min-height: 150vh;
-    align-items: start;/* y */
-    justify-content: center; /* x */ 
+     background: linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 100%);
+     min-height: 100vh;
+     align-items: start;
+     /* y */
+     justify-content: center;
+     /* x */
  }
 
+ #мисли {
+     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+     min-height: 120vh;
 
+ }
 
 
  #portfolio {
@@ -356,12 +371,14 @@
      align-items: center;
      gap: 15px;
      /* Расстояние между каруселью и кнопками */
+     position: relative;
+     margin-top: 90px;
  }
 
  .carousel-window {
-     width: 600px;
+     width: 500px;
      /* Ширина слайда */
-     height: 700px;
+     height: 600px;
      /* Высота одного видимого слайда */
      overflow: hidden;
      /* Скрываем все, что не помещается в "окно" */
